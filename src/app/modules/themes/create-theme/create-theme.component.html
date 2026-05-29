@@ -1,0 +1,87 @@
+<div class="page-content">
+
+  <div class="page-header">
+    <a routerLink="/themes" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h2>Créer une thématique</h2>
+  </div>
+
+  <!-- Preview card -->
+  <div class="preview-card ha-card">
+    <div class="preview-emoji">{{ getCategoryIcon(selectedCategory) }}</div>
+    <div class="preview-info">
+      <strong>{{ form.get('title')?.value || 'Titre de votre thématique' }}</strong>
+      <p>{{ form.get('city')?.value || 'Votre ville' }} · {{ selectedCategory }}</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-form">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Titre</mat-label>
+      <input matInput formControlName="title" placeholder="Ex: Wine & Jazz Paris" />
+      <mat-hint>{{ form.get('title')?.value?.length ?? 0 }} / 60</mat-hint>
+      @if (form.get('title')?.hasError('minlength') && form.get('title')?.touched) {
+        <mat-error>4 caractères minimum</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="3"
+        placeholder="Décrivez l'ambiance, le type de personnes…"></textarea>
+      <mat-hint>{{ form.get('description')?.value?.length ?? 0 }} / 300</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Catégorie</mat-label>
+      <mat-select formControlName="category">
+        @for (cat of categories; track cat) {
+          <mat-option [value]="cat">{{ getCategoryIcon(cat) }} {{ cat }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Ville</mat-label>
+      <input matInput formControlName="city" placeholder="Paris, Lyon, Marrakech…" />
+      <mat-icon matPrefix>location_on</mat-icon>
+    </mat-form-field>
+
+    <div class="field-row">
+      <mat-form-field appearance="fill" class="half">
+        <mat-label>Âge min</mat-label>
+        <input matInput type="number" formControlName="ageMin" min="18" max="80" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="half">
+        <mat-label>Âge max</mat-label>
+        <input matInput type="number" formControlName="ageMax" min="18" max="99" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fréquence des dîners</mat-label>
+      <mat-select formControlName="frequency">
+        @for (f of frequencies; track f.value) {
+          <mat-option [value]="f.value">{{ f.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Budget restaurant</mat-label>
+      <mat-select formControlName="restaurantBudgetLevel">
+        @for (b of budgets; track b.value) {
+          <mat-option [value]="b.value">{{ b.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <button type="submit" class="btn-primary-ha" [disabled]="form.invalid || loading">
+      @if (loading) { Création… } @else { Créer la thématique 🎉 }
+    </button>
+
+  </form>
+
+</div>

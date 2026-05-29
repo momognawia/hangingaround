@@ -1,0 +1,127 @@
+@use '../../../../assets/styles/variables' as v;
+
+.onboarding-page {
+  min-height: 100vh;
+  background: white;
+  padding: v.$spacing-md;
+}
+
+.onboarding-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.onboarding-top {
+  padding: v.$spacing-md 0;
+
+  .step-counter {
+    font-size: v.$font-size-sm;
+    color: v.$text-secondary;
+    margin: v.$spacing-sm 0 0;
+    text-align: right;
+  }
+}
+
+.step-content {
+  padding-top: v.$spacing-lg;
+
+  h2 {
+    font-size: v.$font-size-xl;
+    font-weight: 800;
+    margin: 0 0 v.$spacing-xs;
+  }
+
+  .step-desc {
+    color: v.$text-secondary;
+    margin: 0 0 v.$spacing-lg;
+    font-size: v.$font-size-sm;
+  }
+}
+
+.step-form {
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacing-xs;
+  margin-bottom: v.$spacing-lg;
+}
+
+// Interests
+.interests-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$spacing-sm;
+  margin-bottom: v.$spacing-xl;
+}
+
+.interest-chip {
+  padding: 8px 16px;
+  border-radius: v.$radius-full;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  background: white;
+  font-size: v.$font-size-sm;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &.selected {
+    background: v.$primary;
+    color: white;
+    border-color: v.$primary;
+    font-weight: 600;
+  }
+}
+
+// Frequency
+.frequency-options {
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacing-sm;
+  margin-bottom: v.$spacing-xl;
+}
+
+.frequency-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: v.$spacing-md v.$spacing-lg;
+  border-radius: v.$radius-md;
+  border: 2px solid rgba(0,0,0,0.08);
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+
+  strong { font-size: v.$font-size-md; margin-bottom: 2px; }
+  span { font-size: v.$font-size-sm; color: v.$text-secondary; }
+
+  &.selected {
+    border-color: v.$primary;
+    background: rgba(255, 107, 74, 0.04);
+
+    strong { color: v.$primary; }
+  }
+}
+
+// Navigation
+.step-nav {
+  display: flex;
+  gap: v.$spacing-sm;
+  align-items: center;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: v.$text-secondary;
+  cursor: pointer;
+  font-size: v.$font-size-sm;
+  padding: 14px v.$spacing-md;
+  border-radius: v.$radius-full;
+  white-space: nowrap;
+
+  &:hover { background: rgba(0,0,0,0.04); }
+}
+
+.flex-1 { flex: 1; }

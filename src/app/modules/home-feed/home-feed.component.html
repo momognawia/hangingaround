@@ -1,0 +1,67 @@
+<div class="page-content">
+
+  <!-- Header -->
+  @if (user$ | async; as user) {
+    <div class="home-header">
+      <div>
+        <p class="greeting">{{ getGreeting() }}, {{ user.firstName }} 👋</p>
+        <h1>Découvrez votre prochain dîner</h1>
+      </div>
+      <a routerLink="/notifications" class="notif-btn">
+        <mat-icon>notifications_none</mat-icon>
+      </a>
+    </div>
+  }
+
+  <!-- Banner abonnement -->
+  <div class="subscription-banner ha-card">
+    <div class="banner-icon">🍽️</div>
+    <div class="banner-text">
+      <strong>Rejoignez le club</strong>
+      <p>19 USD/mois · Dîners + réductions restaurants</p>
+    </div>
+    <button class="banner-cta">Activer</button>
+  </div>
+
+  <!-- Thématiques -->
+  <section class="section">
+    <div class="section-top">
+      <h2 class="section-title">Thématiques près de vous</h2>
+      <a routerLink="/themes" class="see-all">Voir tout</a>
+    </div>
+
+    @if (themes$ | async; as themes) {
+      @if (themes.length === 0) {
+        <div class="empty-state">
+          <p>Aucune thématique disponible dans votre ville.</p>
+          <a routerLink="/themes/create" class="btn-primary-ha" style="text-decoration:none">
+            Créer une thématique
+          </a>
+        </div>
+      } @else {
+        <div class="themes-list">
+          @for (theme of themes; track theme.id) {
+            <app-theme-card [theme]="theme" />
+          }
+        </div>
+      }
+    } @else {
+      <div class="skeleton-list">
+        @for (n of [1,2,3]; track n) {
+          <div class="skeleton-card"></div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- Créer une thématique -->
+  <div class="create-banner">
+    <mat-icon>add_circle_outline</mat-icon>
+    <div>
+      <strong>Vous avez une idée ?</strong>
+      <p>Créez votre propre thématique</p>
+    </div>
+    <a routerLink="/themes/create" class="btn-create">Créer</a>
+  </div>
+
+</div>

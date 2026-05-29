@@ -1,0 +1,113 @@
+<div class="onboarding-page">
+  <div class="onboarding-container">
+
+    <div class="onboarding-top">
+      <mat-progress-bar mode="determinate" [value]="progress" color="warn" />
+      <p class="step-counter">Étape {{ step() }} / {{ totalSteps }}</p>
+    </div>
+
+    <!-- ÉTAPE 1 : Infos de base -->
+    @if (step() === 1) {
+      <div class="step-content">
+        <h2>Parlez-nous de vous</h2>
+        <p class="step-desc">Ces informations nous aident à créer des groupes compatibles.</p>
+
+        <form [formGroup]="step1" class="step-form">
+          <mat-form-field appearance="fill">
+            <mat-label>Prénom</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Date de naissance</mat-label>
+            <input matInput type="date" formControlName="birthDate" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="gender">
+              @for (g of genders; track g.value) {
+                <mat-option [value]="g.value">{{ g.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="city" placeholder="Paris, Lyon…" />
+            <mat-icon matPrefix>location_on</mat-icon>
+          </mat-form-field>
+        </form>
+
+        <button class="btn-primary-ha" (click)="nextStep()" [disabled]="step1.invalid">
+          Continuer
+        </button>
+      </div>
+    }
+
+    <!-- ÉTAPE 2 : Bio + Intérêts -->
+    @if (step() === 2) {
+      <div class="step-content">
+        <h2>Vos centres d'intérêt</h2>
+        <p class="step-desc">Sélectionnez jusqu'à 8 intérêts pour trouver votre communauté.</p>
+
+        <form [formGroup]="step2" class="step-form">
+          <mat-form-field appearance="fill">
+            <mat-label>Bio courte (optionnel)</mat-label>
+            <textarea matInput formControlName="bio" rows="2"
+              placeholder="En quelques mots…"></textarea>
+            <mat-hint>{{ step2.get('bio')?.value?.length ?? 0 }} / 200</mat-hint>
+          </mat-form-field>
+        </form>
+
+        <div class="interests-grid">
+          @for (interest of allInterests; track interest) {
+            <button class="interest-chip"
+                    [class.selected]="isSelected(interest)"
+                    (click)="toggleInterest(interest)">
+              {{ interest }}
+            </button>
+          }
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" (click)="prevStep()">
+            <mat-icon>arrow_back</mat-icon> Retour
+          </button>
+          <button class="btn-primary-ha flex-1" (click)="nextStep()">
+            Continuer
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- ÉTAPE 3 : Fréquence -->
+    @if (step() === 3) {
+      <div class="step-content">
+        <h2>Votre rythme</h2>
+        <p class="step-desc">À quelle fréquence voulez-vous participer aux dîners ?</p>
+
+        <div class="frequency-options">
+          @for (freq of frequencies; track freq.value) {
+            <button class="frequency-card"
+                    [class.selected]="step3.get('preferredFrequency')?.value === freq.value"
+                    (click)="step3.get('preferredFrequency')?.setValue(freq.value)">
+              <strong>{{ freq.label }}</strong>
+              <span>{{ freq.desc }}</span>
+            </button>
+          }
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" (click)="prevStep()">
+            <mat-icon>arrow_back</mat-icon> Retour
+          </button>
+          <button class="btn-primary-ha flex-1" (click)="finish()" [disabled]="loading">
+            @if (loading) { Enregistrement… } @else { Commencer ! 🎉 }
+          </button>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

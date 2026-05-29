@@ -1,0 +1,74 @@
+<div class="page-content">
+
+  <div class="page-header">
+    <a routerLink="/profile" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h2>Modifier le profil</h2>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Chargement…</div>
+  } @else {
+
+    <!-- Photo -->
+    <div class="photo-section">
+      <label class="photo-upload" for="photo-input">
+        @if (photoPreview) {
+          <img [src]="photoPreview" alt="Photo" class="photo-preview" />
+        } @else {
+          <mat-icon class="photo-icon">add_a_photo</mat-icon>
+          <span>Changer la photo</span>
+        }
+      </label>
+      <input id="photo-input" type="file" accept="image/*" (change)="onPhotoSelected($event)" hidden />
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="edit-form">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ville</mat-label>
+        <input matInput formControlName="city" />
+        <mat-icon matPrefix>location_on</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Bio</mat-label>
+        <textarea matInput formControlName="bio" rows="3"></textarea>
+        <mat-hint>{{ form.get('bio')?.value?.length ?? 0 }} / 200</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fréquence</mat-label>
+        <mat-select formControlName="preferredFrequency">
+          @for (f of frequencies; track f.value) {
+            <mat-option [value]="f.value">{{ f.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Intérêts -->
+      <div class="section-label">Centres d'intérêt (max 8)</div>
+      <div class="interests-grid">
+        @for (interest of allInterests; track interest) {
+          <button type="button" class="interest-chip"
+                  [class.selected]="isSelected(interest)"
+                  (click)="toggleInterest(interest)">
+            {{ interest }}
+          </button>
+        }
+      </div>
+
+      <button type="submit" class="btn-primary-ha" [disabled]="form.invalid || saving">
+        @if (saving) { Enregistrement… } @else { Sauvegarder }
+      </button>
+
+    </form>
+  }
+
+</div>

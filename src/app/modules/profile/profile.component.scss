@@ -1,0 +1,153 @@
+@use '../../../assets/styles/variables' as v;
+
+.profile-header {
+  text-align: center;
+  padding: v.$spacing-xl 0 v.$spacing-lg;
+
+  .avatar-wrapper { margin-bottom: v.$spacing-md; }
+
+  .profile-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  .avatar-placeholder {
+    width: 96px;
+    height: 96px;
+    font-size: 36px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, v.$primary-light, v.$primary);
+    color: white;
+  }
+
+  h1 {
+    font-size: v.$font-size-xl;
+    font-weight: 800;
+    margin: 0 0 v.$spacing-xs;
+  }
+
+  .city {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: v.$text-secondary;
+    font-size: v.$font-size-sm;
+    margin: 0 0 v.$spacing-sm;
+
+    mat-icon { font-size: 16px; width: 16px; height: 16px; }
+  }
+
+  .bio {
+    color: v.$text-secondary;
+    font-size: v.$font-size-sm;
+    max-width: 300px;
+    margin: 0 auto v.$spacing-md;
+    line-height: 1.5;
+  }
+
+  .reputation {
+    display: inline-flex;
+    align-items: center;
+    gap: v.$spacing-xs;
+    background: rgba(245, 200, 66, 0.12);
+    color: #b8960a;
+    padding: 4px 12px;
+    border-radius: v.$radius-full;
+    font-size: v.$font-size-sm;
+    font-weight: 600;
+
+    mat-icon { font-size: 16px; width: 16px; height: 16px; color: #f5c842; }
+  }
+}
+
+.profile-section {
+  background: white;
+  border-radius: v.$radius-md;
+  padding: v.$spacing-md v.$spacing-lg;
+  margin-bottom: v.$spacing-sm;
+  box-shadow: v.$shadow-card;
+
+  h3 {
+    font-size: v.$font-size-base;
+    font-weight: 700;
+    margin: 0 0 v.$spacing-sm;
+    color: v.$text-primary;
+  }
+}
+
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$spacing-xs;
+}
+
+.frequency-badge {
+  display: flex;
+  align-items: center;
+  gap: v.$spacing-sm;
+  color: v.$text-primary;
+  font-weight: 500;
+
+  mat-icon { color: v.$primary; }
+}
+
+.subscription-card {
+  display: flex;
+  align-items: center;
+  gap: v.$spacing-md;
+  padding: v.$spacing-sm;
+  border-radius: v.$radius-sm;
+  background: rgba(107, 107, 128, 0.06);
+
+  &.active {
+    background: rgba(76, 175, 80, 0.08);
+    mat-icon { color: v.$success; }
+  }
+
+  mat-icon { font-size: 28px; width: 28px; height: 28px; color: v.$text-secondary; }
+
+  strong { font-size: v.$font-size-base; display: block; }
+  p { font-size: v.$font-size-sm; color: v.$text-secondary; margin: 2px 0 0; }
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacing-sm;
+  margin-top: v.$spacing-lg;
+
+  .btn-primary-ha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: v.$spacing-sm;
+    text-decoration: none;
+  }
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$spacing-sm;
+  padding: 14px;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  border-radius: v.$radius-full;
+  background: none;
+  color: v.$text-secondary;
+  font-size: v.$font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.loading {
+  text-align: center;
+  padding: v.$spacing-xxl;
+  color: v.$text-secondary;
+}

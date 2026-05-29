@@ -1,0 +1,105 @@
+@if (theme$ | async; as theme) {
+
+  <div class="theme-detail">
+
+    <!-- Hero -->
+    <div class="theme-hero" [style.backgroundImage]="theme.imageUrl ? 'url(' + theme.imageUrl + ')' : ''">
+      <div class="hero-overlay"></div>
+      <a routerLink="/themes" class="back-btn">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+      <div class="hero-content">
+        <div class="hero-emoji">{{ getCategoryIcon(theme.category) }}</div>
+        <span class="ha-chip chip-neutral">{{ theme.category }}</span>
+        <h1>{{ theme.title }}</h1>
+      </div>
+    </div>
+
+    <div class="detail-body">
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <strong>{{ theme.membersCount }}</strong>
+          <span>membres</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <strong>{{ theme.groupsGenerated }}</strong>
+          <span>dîners organisés</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <strong>{{ getBudgetLabel(theme.restaurantBudgetLevel) }}</strong>
+          <span>budget</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <section class="detail-section">
+        <h3>À propos</h3>
+        <p>{{ theme.description }}</p>
+      </section>
+
+      <!-- Infos -->
+      <section class="detail-section">
+        <h3>Détails</h3>
+        <div class="info-list">
+          <div class="info-item">
+            <mat-icon>location_on</mat-icon>
+            <span>{{ theme.city }}</span>
+          </div>
+          @if (theme.ageMin || theme.ageMax) {
+            <div class="info-item">
+              <mat-icon>cake</mat-icon>
+              <span>{{ theme.ageMin ?? '18' }} – {{ theme.ageMax ?? '99' }} ans</span>
+            </div>
+          }
+          <div class="info-item">
+            <mat-icon>event_repeat</mat-icon>
+            <span>{{ theme.frequency }}</span>
+          </div>
+          <div class="info-item">
+            <mat-icon>group</mat-icon>
+            <span>Groupes de {{ theme.targetGroupSize }} personnes</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prochain dîner -->
+      @if (theme.nextEventDate) {
+        <section class="next-event ha-card">
+          <div class="next-event-inner">
+            <mat-icon>event</mat-icon>
+            <div>
+              <strong>Prochain dîner</strong>
+              <p>{{ theme.nextEventDate | date:'EEEE d MMMM' : '' : 'fr' }}</p>
+            </div>
+          </div>
+        </section>
+      }
+
+      <!-- CTA -->
+      <div class="cta-area">
+        <button class="btn-primary-ha"
+                [class.btn-leave]="isMember()"
+                (click)="toggleMembership(theme.id)"
+                [disabled]="actionLoading()">
+          @if (actionLoading()) {
+            <mat-spinner diameter="20" />
+          } @else if (isMember()) {
+            <mat-icon>check_circle</mat-icon> Quitter la thématique
+          } @else {
+            <mat-icon>add_circle</mat-icon> Rejoindre la thématique
+          }
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+} @else {
+  <div class="loading">
+    <mat-spinner diameter="40" color="warn" />
+  </div>
+}

@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run build:*)",
+      "Bash(npm start)",
+      "Bash(npm test)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npx*)",
+      "Bash(ng build*)",
+      "Bash(ng serve*)",
+      "Bash(ng generate*)",
+      "Bash(ng test*)",
+      "Bash(ng lint*)",
+      "Bash(firebase deploy*)",
+      "Bash(firebase hosting:channel:deploy*)",
+      "Bash(firebase emulators:start*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git pull*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git stash*)",
+      "Bash(ls*)",
+      "Bash(find*)",
+      "Bash(cat*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,0 +1,78 @@
+<div class="page-content">
+  @if (user$ | async; as user) {
+
+    <!-- Header profil -->
+    <div class="profile-header">
+      <div class="avatar-wrapper">
+        @if (user.profilePhotoUrl) {
+          <img [src]="user.profilePhotoUrl" [alt]="user.firstName" class="profile-avatar" />
+        } @else {
+          <div class="profile-avatar avatar-placeholder">
+            {{ getInitials(user.firstName) }}
+          </div>
+        }
+      </div>
+
+      <h1>{{ user.firstName }}{{ user.birthDate ? ', ' + getAge(user.birthDate) : '' }}</h1>
+      <p class="city">
+        <mat-icon inline>location_on</mat-icon>
+        {{ user.city || 'Ville non renseignée' }}
+      </p>
+
+      @if (user.bio) {
+        <p class="bio">{{ user.bio }}</p>
+      }
+
+      <div class="reputation">
+        <mat-icon>star</mat-icon>
+        <span>{{ user.reputationScore }} pts réputation</span>
+      </div>
+    </div>
+
+    <!-- Intérêts -->
+    @if (user.interests?.length) {
+      <section class="profile-section">
+        <h3>Centres d'intérêt</h3>
+        <div class="interests-list">
+          @for (interest of user.interests; track interest) {
+            <span class="ha-chip chip-primary">{{ interest }}</span>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- Rythme -->
+    <section class="profile-section">
+      <h3>Mon rythme</h3>
+      <div class="frequency-badge">
+        <mat-icon>event_repeat</mat-icon>
+        <span>{{ freqLabel[user.preferredFrequency] ?? user.preferredFrequency }}</span>
+      </div>
+    </section>
+
+    <!-- Abonnement -->
+    <section class="profile-section">
+      <h3>Abonnement</h3>
+      <div class="subscription-card" [class.active]="user.subscriptionStatus === 'active'">
+        <mat-icon>{{ user.subscriptionStatus === 'active' ? 'verified' : 'lock' }}</mat-icon>
+        <div>
+          <strong>{{ user.subscriptionStatus === 'active' ? 'Membre actif' : 'Non abonné' }}</strong>
+          <p>{{ user.subscriptionStatus === 'active' ? '19 USD / mois' : 'Activez votre membership pour rejoindre des groupes' }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Actions -->
+    <div class="profile-actions">
+      <a routerLink="/profile/edit" class="btn-primary-ha">
+        <mat-icon>edit</mat-icon> Modifier mon profil
+      </a>
+      <button class="btn-logout" (click)="logout()">
+        <mat-icon>logout</mat-icon> Se déconnecter
+      </button>
+    </div>
+
+  } @else {
+    <div class="loading">Chargement…</div>
+  }
+</div>

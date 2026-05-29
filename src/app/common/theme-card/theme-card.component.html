@@ -1,0 +1,38 @@
+<a class="theme-card ha-card" [routerLink]="['/themes', theme.id]">
+
+  <div class="card-image" [style.backgroundImage]="theme.imageUrl ? 'url(' + theme.imageUrl + ')' : ''">
+    <div class="card-overlay"></div>
+    <div class="card-emoji">{{ categoryIcon }}</div>
+    <div class="card-budget">{{ budgetLabel }}</div>
+  </div>
+
+  <div class="card-body">
+    <div class="card-header-row">
+      <span class="ha-chip chip-neutral">{{ theme.category }}</span>
+      @if (spotsLeft <= 2 && spotsLeft > 0) {
+        <span class="ha-chip chip-primary">{{ spotsLeft }} place(s) restante(s)</span>
+      }
+    </div>
+
+    <h3 class="card-title">{{ theme.title }}</h3>
+    <p class="card-desc">{{ theme.description }}</p>
+
+    <div class="card-footer">
+      <div class="card-stat">
+        <mat-icon>group</mat-icon>
+        <span>{{ theme.membersCount }} membres</span>
+      </div>
+      <div class="card-stat">
+        <mat-icon>restaurant</mat-icon>
+        <span>{{ theme.groupsGenerated }} dîners</span>
+      </div>
+      @if (theme.city) {
+        <div class="card-stat">
+          <mat-icon>location_on</mat-icon>
+          <span>{{ theme.city }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+</a>
