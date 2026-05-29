@@ -1,0 +1,145 @@
+@use '@angular/material' as mat;
+@use 'assets/styles/variables' as v;
+
+// Material theme
+$ha-primary: mat.m2-define-palette(mat.$m2-deep-orange-palette, 600, 400, 800);
+$ha-accent: mat.m2-define-palette(mat.$m2-amber-palette, 600);
+$ha-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$ha-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $ha-primary,
+    accent: $ha-accent,
+    warn: $ha-warn,
+  ),
+  typography: mat.m2-define-typography-config(
+    $font-family: v.$font-family,
+  ),
+  density: 0,
+));
+
+@include mat.all-component-themes($ha-theme);
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+// Reset & base
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: v.$font-family;
+  font-size: v.$font-size-base;
+  color: v.$text-primary;
+  background-color: v.$bg-app;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// PWA / mobile utilities
+.mobile-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  background: v.$bg-app;
+  overflow-x: hidden;
+}
+
+.page-content {
+  padding: v.$spacing-md;
+  padding-bottom: calc(v.$bottom-nav-height + v.$spacing-lg);
+}
+
+// Cards
+.ha-card {
+  background: v.$bg-card;
+  border-radius: v.$radius-md;
+  box-shadow: v.$shadow-card;
+  overflow: hidden;
+}
+
+// Primary button
+.btn-primary-ha {
+  background: v.$primary;
+  color: v.$text-on-primary;
+  border: none;
+  border-radius: v.$radius-full;
+  padding: 14px 28px;
+  font-size: v.$font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: v.$shadow-button;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 107, 74, 0.45);
+  }
+
+  &:active { transform: translateY(0); }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// Section titles
+.section-title {
+  font-size: v.$font-size-lg;
+  font-weight: 700;
+  color: v.$text-primary;
+  margin: 0 0 v.$spacing-md;
+}
+
+// Chips / tags
+.ha-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: v.$radius-full;
+  font-size: v.$font-size-xs;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  &.chip-primary { background: rgba(255, 107, 74, 0.12); color: v.$primary; }
+  &.chip-success { background: rgba(76, 175, 80, 0.12); color: v.$success; }
+  &.chip-neutral { background: rgba(107, 107, 128, 0.1); color: v.$text-secondary; }
+}
+
+// Avatar
+.ha-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  background: linear-gradient(135deg, v.$primary-light, v.$primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+// Material overrides
+.mat-mdc-form-field { width: 100%; }
+.mdc-text-field--filled { border-radius: v.$radius-sm v.$radius-sm 0 0 !important; }
+
+// Scrollbar
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+
+// Utilities
+.text-muted { color: v.$text-secondary; }
+.text-light-color { color: v.$text-light; }
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }
+.gap-sm { gap: v.$spacing-sm; }
+.gap-md { gap: v.$spacing-md; }

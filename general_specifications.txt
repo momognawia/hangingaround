@@ -1,0 +1,1469 @@
+# Spécification Produit — Application de rencontres en groupe
+
+## Vision
+
+Créer une application mobile de rencontres sociales où les utilisateurs ne rencontrent pas une seule personne mais un groupe de personnes autour d’une thématique commune.
+
+Le produit transforme le dating classique en expérience sociale récurrente.
+
+Les rencontres ont lieu dans des restaurants partenaires.
+
+Le système organise automatiquement des groupes de 6 personnes et fait tourner les participants au fil des semaines afin de créer de nouvelles connexions sociales.
+
+---
+
+# Concept Produit
+
+## Principe principal
+
+1. Un utilisateur crée ou rejoint une thématique.
+2. Quand suffisamment de participants rejoignent la thématique :
+
+   * l’application génère automatiquement des groupes de 6
+   * une rencontre est organisée dans un restaurant
+3. Après la rencontre :
+
+   * les groupes tournent
+   * de nouvelles combinaisons sont générées
+   * un nouveau restaurant est sélectionné
+4. Les utilisateurs continuent à rencontrer progressivement de nouvelles personnes dans la même communauté.
+
+---
+
+# Objectifs Produit
+
+## Objectifs business
+
+* Réduire la fatigue du swipe dating
+* Créer des communautés locales récurrentes
+* Générer de la rétention grâce aux rotations de groupes
+* Développer des partenariats restaurants
+* Monétiser via abonnement premium et partenariats
+
+## Objectifs utilisateur
+
+* Rencontrer des personnes sans pression
+* Créer des connexions naturelles
+* Découvrir de nouveaux restaurants
+* Participer à des expériences sociales régulières
+
+---
+
+# Personas
+
+## Persona 1 — Jeune urbain social
+
+* 25-35 ans
+* Fatigué des apps de dating classiques
+* Cherche des expériences réelles
+* Aime sortir dans des restaurants/cafés/bars
+
+## Persona 2 — Introverti social
+
+* Préfère les groupes aux rendez-vous 1-to-1
+* Recherche des rencontres plus naturelles
+* Apprécie les thématiques communes
+
+## Persona 3 — Expat / nouvel arrivant
+
+* Cherche à créer un cercle social rapidement
+* Intéressé par des activités locales
+
+---
+
+# Fonctionnalités Mobile App
+
+# 1. Authentification
+
+## Features
+
+* Signup email/password
+* Login social :
+
+  * Apple
+  * Google
+* Vérification SMS
+* Vérification photo
+* Gestion profil
+
+## Données profil
+
+* prénom
+* âge
+* genre
+* orientation
+* bio courte
+* photos
+* centres d’intérêt
+* ville
+* préférences alimentaires
+* badges réputation
+
+---
+
+# 2. Découverte des thématiques
+
+## Feed principal
+
+Liste des thèmes disponibles.
+
+Exemples :
+
+* Wine & Jazz
+* Startup Founders
+* Hiking & Brunch
+* Board Games Night
+* Sushi Lovers
+* Electronic Music Lovers
+
+## Informations affichées
+
+* titre
+* image
+* description
+* nombre de participants
+* nombre de groupes générés
+* prochaines dates
+* restaurants associés
+* nombre de places restantes
+
+## Actions
+
+* rejoindre un thème
+* quitter un thème
+* sauvegarder
+* partager
+
+---
+
+# 3. Création de thématique
+
+## Inputs
+
+* titre
+* description
+* catégorie
+* localisation
+* tranche d’âge
+* taille max communauté
+* ratio hommes/femmes optionnel
+* fréquence des rencontres
+* gamme de budget restaurant
+
+## Catégories
+
+* Food
+* Culture
+* Music
+* Tech
+* Outdoor
+* Sports
+* Lifestyle
+* Networking
+
+---
+
+# 4. Génération automatique des groupes
+
+## Règles MVP
+
+Quand :
+
+* minimum 6 participants
+
+Alors :
+
+* création automatique d’un groupe
+* assignation d’un restaurant
+* génération d’une date
+
+## Rotation intelligente
+
+Objectif :
+
+* éviter que les mêmes personnes se retrouvent constamment
+* maximiser nouvelles interactions
+
+## Exemple
+
+30 utilisateurs :
+
+* 5 groupes de 6
+
+Semaine suivante :
+
+* recomposition automatique des groupes
+* nouveaux restaurants
+
+## Contraintes algorithmiques
+
+* éviter répétitions fréquentes
+* équilibrer genres
+* équilibrer niveaux d’activité
+* maximiser diversité sociale
+
+---
+
+# 5. Group Chat
+
+Chaque groupe possède un chat.
+
+## Features
+
+* messages texte
+* images
+* réactions emoji
+* notifications push
+* messages système
+* partage localisation restaurant
+
+## Messages système
+
+Exemples :
+
+* “Restaurant confirmé”
+* “Nouveau participant”
+* “Rotation du groupe prévue jeudi”
+
+---
+
+# 6. Chat 1-to-1
+
+## Déblocage
+
+Options possibles :
+
+### Option A
+
+Après participation à un dîner.
+
+### Option B
+
+Après match mutuel.
+
+## Features
+
+* texte
+* images
+* audio court
+* blocage utilisateur
+* signalement
+
+---
+
+# 7. Gestion des événements
+
+## Écran événement
+
+Affiche :
+
+* participants
+* restaurant
+* date
+* heure
+* statut confirmation
+* chat groupe
+* historique rotations
+
+## Statuts
+
+* pending
+* confirmed
+* completed
+* cancelled
+
+---
+
+# 8. Notifications
+
+## Push notifications
+
+Exemples :
+
+* nouveau groupe généré
+* restaurant confirmé
+* nouveau message
+* rotation disponible
+* rappel dîner
+
+## Email notifications
+
+* confirmations
+* récap événement
+* sécurité
+
+---
+
+# 9. Réputation & sécurité
+
+## Ratings post-event
+
+Badges :
+
+* respectful
+* friendly
+* fun
+* punctual
+* good vibes
+
+## Sécurité
+
+* report utilisateur
+* blocage
+* modération admin
+* blacklist
+* détection spam
+
+---
+
+# Interface Admin Web
+
+# Objectifs
+
+Permettre à l’équipe opérationnelle de gérer :
+
+* restaurants
+* réservations
+* groupes
+* utilisateurs
+* notifications
+* modération
+
+---
+
+# 1. Dashboard
+
+## KPIs
+
+* utilisateurs actifs
+* groupes générés
+* taux participation
+* no-show rate
+* restaurants actifs
+* revenus
+* rétention
+
+---
+
+# 2. Gestion utilisateurs
+
+## Features
+
+* recherche utilisateurs
+* bannissement
+* vérification identité
+* gestion reports
+* historique participation
+
+---
+
+# 3. Gestion restaurants
+
+## Données restaurant
+
+* nom
+* adresse
+* géolocalisation
+* capacité
+* type cuisine
+* budget
+* jours disponibles
+* contact
+* partenariat
+
+## Actions
+
+* ajouter restaurant
+* modifier
+* désactiver
+* assigner groupes
+
+---
+
+# 4. Gestion réservations
+
+## Features
+
+* voir réservations
+* confirmer réservation
+* annuler
+* déplacer restaurant
+* assignation manuelle
+
+## Workflow
+
+1. Groupe généré
+2. Admin reçoit suggestion restaurant
+3. Réservation confirmée
+4. Notification envoyée au groupe
+
+---
+
+# 5. Gestion événements
+
+## Actions admin
+
+* créer événement
+* modifier date
+* changer participants
+* fusionner groupes
+* annuler événement
+
+---
+
+# 6. Notifications
+
+## Types
+
+* push
+* email
+* in-app
+
+## Campagnes
+
+* relance participation
+* nouveaux thèmes
+* promotions restaurants
+
+---
+
+# Architecture Technique
+
+# Stack recommandée
+
+## Mobile
+
+* React Native
+  ou
+* Flutter
+
+## Backend
+
+* Node.js + NestJS
+
+## Database & Backend Services
+
+* Supabase
+
+  * PostgreSQL managé
+  * Auth
+  * Realtime
+  * Row Level Security
+  * Storage
+
+## Realtime Chat
+
+* Supabase Realtime
+* WebSockets
+
+## Storage
+
+* Supabase Storage
+
+## Notifications
+
+* Firebase Cloud Messaging (FCM)
+* Apple Push Notification Service (APNS)
+
+## Admin Panel
+
+* Next.js
+
+## Hosting
+
+Option 1 :
+
+* Google Cloud Run
+
+Option 2 :
+
+* Firebase Hosting
+
+## Paiement & Abonnements
+
+* Stripe
+* Stripe Billing
+* Stripe Customer Portal
+
+Les abonnements sont gérés directement par Stripe.
+
+La base de données ne stocke que :
+
+* stripe_customer_id
+* statut abonnement synchronisé
+* historique minimal nécessaire
+
+---
+
+# Database Design
+
+# USERS
+
+```sql
+users
+- id (uuid)
+- stripe_customer_id
+- email
+- phone
+- password_hash
+- first_name
+- birth_date
+- gender
+- orientation
+- bio
+- city
+- profile_photo_url
+- verification_status
+- reputation_score
+- preferred_frequency
+- subscription_status
+- created_at
+- updated_at
+```
+
+---
+
+# USER_PHOTOS
+
+```sql
+user_photos
+- id
+- user_id
+- photo_url
+- position
+- created_at
+```
+
+---
+
+# INTERESTS
+
+```sql
+interests
+- id
+- name
+```
+
+---
+
+# USER_INTERESTS
+
+```sql
+user_interests
+- user_id
+- interest_id
+```
+
+---
+
+# THEMES
+
+```sql
+themes
+- id
+- creator_user_id
+- title
+- description
+- category
+- city
+- age_min
+- age_max
+- max_members
+- target_group_size
+- frequency
+- restaurant_budget_level
+- status
+- created_at
+```
+
+---
+
+# THEME_MEMBERS
+
+```sql
+theme_members
+- id
+- theme_id
+- user_id
+- joined_at
+- status
+```
+
+---
+
+# GROUPS
+
+```sql
+groups
+- id
+- theme_id
+- rotation_number
+- restaurant_id
+- event_date
+- status
+- created_at
+```
+
+---
+
+# GROUP_MEMBERS
+
+```sql
+group_members
+- id
+- group_id
+- user_id
+- joined_at
+- attendance_status
+```
+
+---
+
+# RESTAURANTS
+
+```sql
+restaurants
+- id
+- name
+- address
+- city
+- latitude
+- longitude
+- cuisine_type
+- price_level
+- capacity
+- partner_status
+- contact_name
+- contact_phone
+- contact_email
+- created_at
+```
+
+---
+
+# RESTAURANT_AVAILABILITY
+
+```sql
+restaurant_availability
+- id
+- restaurant_id
+- weekday
+- available_from
+- available_to
+```
+
+---
+
+# BOOKINGS
+
+```sql
+bookings
+- id
+- group_id
+- restaurant_id
+- booking_date
+- booking_time
+- guest_count
+- booking_status
+- confirmation_reference
+- created_at
+```
+
+---
+
+# CHAT_ROOMS
+
+```sql
+chat_rooms
+- id
+- type (group/direct)
+- created_at
+```
+
+---
+
+# CHAT_ROOM_MEMBERS
+
+```sql
+chat_room_members
+- id
+- room_id
+- user_id
+- joined_at
+```
+
+---
+
+# MESSAGES
+
+```sql
+messages
+- id
+- room_id
+- sender_user_id
+- message_type
+- content
+- media_url
+- created_at
+- edited_at
+```
+
+---
+
+# NOTIFICATIONS
+
+```sql
+notifications
+- id
+- user_id
+- type
+- title
+- body
+- read_at
+- created_at
+```
+
+---
+
+# REPORTS
+
+```sql
+reports
+- id
+- reporter_user_id
+- reported_user_id
+- reason
+- description
+- status
+- created_at
+```
+
+---
+
+# RATINGS
+
+```sql
+ratings
+- id
+- from_user_id
+- to_user_id
+- group_id
+- rating_type
+- created_at
+```
+
+---
+
+# Rotation Algorithm — MVP
+
+## Inputs
+
+* historique rencontres
+* disponibilité utilisateurs
+* ratios
+* ville
+* thème
+
+## Règles
+
+* éviter doublons récents
+* maximiser nouvelles rencontres
+* conserver équilibre social
+
+## Future améliorations
+
+* scoring compatibilité
+* machine learning
+* affinités comportementales
+
+---
+
+# APIs principales
+
+# Auth
+
+```http
+POST /auth/signup
+POST /auth/login
+POST /auth/verify
+```
+
+# Themes
+
+```http
+GET /themes
+POST /themes
+POST /themes/:id/join
+```
+
+# Groups
+
+```http
+GET /groups/:id
+POST /groups/generate
+```
+
+# Chat
+
+```http
+GET /chat/rooms
+POST /chat/messages
+```
+
+# Restaurants
+
+```http
+GET /restaurants
+POST /bookings
+```
+
+---
+
+# Roadmap Produit
+
+# MVP Complet — Version Initiale
+
+Le MVP doit déjà inclure :
+
+* Authentification
+* Création et découverte de thèmes
+* Génération automatique des groupes
+* Rotation automatique des participants
+* Chat groupe
+* Chat privé 1-to-1
+* Réservations restaurants
+* Notifications push
+* Gestion fréquence utilisateur
+* Réputation & sécurité
+* Interface admin complète
+* Gestion partenaires restaurants
+* Réductions restaurants
+* Abonnement mensuel
+
+---
+
+# Fréquence utilisateur
+
+Chaque utilisateur choisit son rythme de participation.
+
+## Options
+
+* 1 dîner par semaine
+* 1 dîner toutes les 2 semaines
+* 1 dîner par mois
+
+## Utilisation dans l’algorithme
+
+Le moteur de génération des groupes doit :
+
+* respecter la fréquence utilisateur
+* équilibrer la participation
+* éviter surcharge événements
+* optimiser remplissage des tables
+
+## Database
+
+```sql
+users
+- preferred_frequency
+```
+
+Valeurs possibles :
+
+* weekly
+* biweekly
+* monthly
+
+---
+
+# Modèle économique principal
+
+# Abonnement Membership
+
+## Prix cible
+
+19 USD / mois
+
+## Proposition de valeur
+
+Le membre récupère une partie importante de son abonnement grâce aux avantages restaurants.
+
+Exemple :
+
+* abonnement : 19 USD
+* réduction restaurant partenaire : 6%
+* participation régulière aux dîners
+* économies mensuelles récurrentes
+
+Le produit devient :
+
+* une plateforme sociale
+* un club lifestyle
+* un réseau relationnel réel
+* une expérience économiquement intéressante
+
+Le produit devient donc :
+
+* social
+* dating
+* lifestyle
+* économiquement avantageux
+
+---
+
+# Système de réduction restaurant
+
+## Concept
+
+Les restaurants partenaires offrent :
+
+* 6% de réduction sur la facture
+  OU
+* avantages spécifiques
+* menu partenaire
+* dessert ou boisson offerte
+
+En échange :
+
+* trafic qualifié récurrent
+* remplissage heures creuses
+* acquisition nouveaux clients
+* visibilité dans l’application
+* fidélisation
+
+---
+
+# Features Membership
+
+Tous les utilisateurs doivent être abonnés pour participer aux groupes.
+
+## Inclus dans l’abonnement
+
+* accès aux groupes
+* rotations illimitées
+* réservations restaurants
+* réductions partenaires
+* chat groupe
+* chat privé
+* événements récurrents
+
+---
+
+# Pourquoi éviter un “Premium” classique
+
+Le produit doit éviter la logique Tinder :
+
+* boosts
+* likes illimités
+* super likes
+* hiérarchie sociale artificielle
+
+Le modèle principal devient plutôt :
+
+> club membership
+
+Pas :
+
+> free app + premium unlock.
+
+---
+
+# Positionnement recommandé
+
+Le produit doit être présenté comme :
+
+* un social dining club
+* un réseau social réel
+* une communauté lifestyle
+* une plateforme de rencontres organiques
+
+Pas uniquement comme une app de dating.
+
+---
+
+# Offre Entreprise (B2B)
+
+# Vision
+
+Utiliser le même système de rotation sociale pour améliorer :
+
+* cohésion d’équipe
+* networking interne
+* onboarding employés
+* culture d’entreprise
+
+---
+
+# Cas d’usage entreprise
+
+## Exemple
+
+Entreprise de 300 employés.
+
+L’application génère automatiquement :
+
+* tables de déjeuner
+* dîners équipe
+* groupes inter-départements
+* rotations sociales régulières
+
+Les employés rencontrent progressivement des collègues différents.
+
+---
+
+# Features B2B
+
+## Admin entreprise
+
+* création espaces entreprise
+* gestion employés
+* budgets restaurants
+* événements privés
+* analytics RH
+
+## Groupes automatiques
+
+* rotation équipes
+* mix départements
+* onboarding nouveaux employés
+* networking managers
+
+## Intégrations futures
+
+* Slack
+* Microsoft Teams
+* Google Workspace
+
+---
+
+# Business Model B2B
+
+## Positionnement
+
+Offre destinée aux entreprises souhaitant améliorer :
+
+* cohésion interne
+* communication inter-équipes
+* culture d’entreprise
+* onboarding
+* rétention employés
+
+---
+
+# Modèle tarifaire entreprise
+
+## Facturation globale entreprise
+
+Le modèle recommandé est :
+
+* abonnement mensuel global
+* tarif dégressif selon nombre d’employés
+
+L’entreprise paie une facture unique.
+
+---
+
+# Pricing recommandé
+
+## Small Business
+
+1 à 50 employés
+
+* 299 USD / mois
+
+## Medium Company
+
+51 à 200 employés
+
+* 799 USD / mois
+
+## Large Company
+
+201 à 1000 employés
+
+* 1999 USD / mois
+
+## Enterprise
+
+1000+ employés
+
+* custom pricing
+* account manager dédié
+* intégrations avancées
+
+---
+
+# Pricing alternatif scalable
+
+## Par employé actif
+
+Exemple :
+
+* 6 USD par employé actif / mois
+* minimum mensuel garanti
+
+Ce modèle peut être plus rentable à long terme.
+
+---
+
+# Features B2B Premium
+
+## Inclus
+
+* génération automatique de groupes
+* rotation intelligente
+* dashboards RH
+* analytics engagement
+* événements privés
+* onboarding social
+* intégrations Slack / Teams
+* gestion budgets restaurants
+
+---
+
+# KPIs B2B importants
+
+* participation employés
+* taux engagement
+* cross-team interactions
+* satisfaction employés
+* rétention collaborateurs
+
+---
+
+# Potentiel stratégique
+
+Le produit peut devenir :
+
+## B2C
+
+Une plateforme sociale lifestyle.
+
+## B2B
+
+Un outil de socialisation et culture d’entreprise.
+
+Cela augmente fortement :
+
+* rétention
+* TAM
+* diversification revenus
+* valeur startup
+
+---
+
+# Future Évolutions
+
+* IA de compatibilité sociale
+* recommandations intelligentes restaurants
+* événements premium partenaires
+* city ambassadors
+* voyages de groupe
+* clubs privés thématiques
+* expansion multi-villes
+
+---
+
+# Phase 3
+
+* IA matching social
+* Recommandation restaurants
+* Events premium
+* Abonnement
+* Expansion multi-villes
+
+---
+
+# KPIs importants
+
+## Activation
+
+* % users rejoignant un thème
+* temps avant premier dîner
+
+## Engagement
+
+* messages envoyés
+* participation événements
+* fréquence retour
+
+## Rétention
+
+* D7
+* D30
+* nombre rotations effectuées
+
+## Marketplace
+
+* taux remplissage groupes
+* taux no-show
+* utilisation restaurants
+
+---
+
+# Risques Produit
+
+## Cold start
+
+Solution :
+
+* événements seedés manuellement
+* ambassadeurs locaux
+* forte curation initiale
+
+## Déséquilibre hommes/femmes
+
+Solution :
+
+* quotas
+* waitlists
+* invitations
+
+## Sécurité
+
+Solution :
+
+* vérification identité
+* modération
+* réputation
+* lieux partenaires uniquement
+
+---
+
+# Vision Long Terme
+
+Créer le premier réseau social basé sur :
+
+* les rencontres réelles
+* les groupes dynamiques
+* les expériences locales
+* les rotations sociales intelligentes
+
+Le produit devient progressivement un mélange entre :
+
+* social club
+* réseau relationnel
+* plateforme lifestyle
+* découverte de lieux
+* rencontres organiques
+
+
+1. 🧠 ARCHITECTURE SYSTÈME (END-TO-END)
+🧩 Vue globale
+
+Le système est composé de 5 blocs :
+
+Mobile Apps (iOS / Android)
+        ↓
+API Backend (Cloud Run - NestJS)
+        ↓
+Supabase (DB + Auth + Realtime + Storage)
+        ↓
+Services externes (Stripe / FCM / Maps)
+        ↓
+Admin Web App (Next.js)
+📱 Mobile App (React Native)
+
+Responsabilités :
+
+auth user
+rejoindre communautés
+voir groupes
+chat
+check-in géolocalisé
+notifications
+profil
+
+Connexion :
+
+Supabase Auth (JWT)
+Realtime WebSocket pour chat
+API backend pour logique métier
+⚙️ Backend (Cloud Run / NestJS)
+
+👉 C’est le cerveau du système
+
+Responsabilités :
+génération groupes (core algo)
+rotation users
+matching communities
+sélection venues
+réservation restaurants/venues
+check-in validation
+no-show scoring
+business rules
+🗄️ Supabase (Data Layer)
+PostgreSQL (source of truth)
+Realtime (chat + events live)
+Storage (images)
+Row Level Security (RLS)
+💳 Stripe
+abonnements users (19$/mois)
+abonnements entreprises
+billing + invoices
+webhooks vers backend
+🔔 Notifications
+Firebase Cloud Messaging
+APNS (iOS)
+
+Triggers :
+
+event créé
+chat message
+check-in required
+reminder dîner
+🧑‍💼 Admin Web (Next.js)
+gestion users
+gestion venues
+gestion bookings
+monitoring groupes
+modération
+dashboards KPI
+2. 🔄 ALGORITHME DE ROTATION (CORE DU PRODUIT)
+🎯 Objectif
+
+Créer des groupes de 6 :
+
+nouveaux visages à chaque dîner
+équilibre social
+respect préférences
+minimisation no-show
+📥 INPUTS
+user_id
+themes (priorité 1 → 5)
+geo_radius
+frequency (weekly / biweekly / monthly)
+history interactions
+reliability score
+gender ratio rules (optional)
+venue availability
+⚙️ PROCESS STEP-BY-STEP
+STEP 1 — filtrage users actifs
+eligible_users =
+  users where
+  subscription_active == true
+  AND frequency_allows_event_now
+  AND not penalized
+STEP 2 — segmentation par communauté
+groups_by_theme = groupBy(theme_priority)
+STEP 3 — clustering géographique
+clusters = cluster(users, radius_km)
+STEP 4 — formation groupes de 6
+
+Objectif :
+
+minimiser repeat pairs
+maximiser diversité
+for cluster in clusters:
+    while cluster.users >= 6:
+        group = select_best_combination(6 users)
+STEP 5 — scoring combinaison
+
+Chaque groupe a un score :
+
+score =
+  diversity_score
+  + novelty_score
+  + reliability_score
+  + gender_balance_score
+  - past_overlap_penalty
+STEP 6 — assignation venue
+venue = best_match(
+  capacity >= 6,
+  distance_min,
+  budget_match,
+  availability
+)
+STEP 7 — rotation future
+next_rotation excludes last X participants
+3. 🎨 UX / WIREFRAMES ÉCRANS
+📱 1. Home Feed
+liste communautés
+events à venir
+countdown
+places restantes
+
+CTA :
+
+Join / Confirm
+
+🧭 2. Community Page
+description thème
+membres actifs
+prochains dîners
+bouton rejoindre
+🍽️ 3. Event Screen (TRÈS IMPORTANT)
+
+Contient :
+
+lieu
+heure
+participants (blur avant check-in)
+chat (locked)
+bouton check-in
+📍 4. Check-in Screen
+carte
+bouton "I'm here"
+validation GPS
+unlock chat
+💬 5. Group Chat (TABLE CHAT)
+
+Débloqué uniquement après check-in.
+
+Features :
+
+messages live
+photos
+reactions
+info restaurant
+💬 6. 1-to-1 Chat
+débloqué après event
+ou mutual interest
+👤 7. Profile
+bio
+interests
+reliability score
+history events
+badges
+⚙️ 8. Settings
+fréquence (weekly / biweekly / monthly)
+communautés (max 5)
+rayon géographique
+préférences
+4. 🚀 GO-TO-MARKET (CRITIQUE POUR COLD START)
+🎯 PROBLÈME PRINCIPAL
+
+👉 Sans densité locale = produit mort
+
+🏙️ STRATÉGIE DE LANCEMENT
+Phase 1 — 1 seule ville
+
+Choix idéal :
+
+Paris
+Londres
+NYC
+Berlin
+🧑‍🤝‍🧑 Seed strategy
+
+Tu DOIS créer l’offre avant la demande :
+
+20–50 événements pré-créés
+communautés simulées
+groupes remplis manuellement au début
+🍷 Partenariats restaurants
+deals early-stage
+heures creuses
+visibilité gratuite
+🧑‍💼 Ambassadeurs
+1 per quartier
+organise premiers dîners
+recrute users
+📣 Acquisition users
+TikTok (very strong fit)
+Instagram reels
+“social experiment content”
+
+Ex :
+
+“We matched 6 strangers for dinner”

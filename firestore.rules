@@ -1,0 +1,86 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+
+    // Users
+    match /users/{userId} {
+      allow read: if isAuth();
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId);
+      allow delete: if false;
+    }
+
+    // Themes
+    match /themes/{themeId} {
+      allow read: if isAuth();
+      allow create: if isAuth();
+      allow update: if isAuth() && (
+        resource.data.creatorUserId == request.auth.uid
+        || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['membersCount'])
+      );
+      allow delete: if isAuth() && resource.data.creatorUserId == request.auth.uid;
+    }
+
+    // Theme members
+    match /theme_members/{docId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow delete: if isAuth() && resource.data.userId == request.auth.uid;
+    }
+
+    // Groups — read-only for members
+    match /groups/{groupId} {
+      allow read: if isAuth();
+      allow write: if false; // Cloud Functions only
+    }
+
+    match /group_members/{docId} {
+      allow read: if isAuth();
+      allow write: if false; // Cloud Functions only
+    }
+
+    // Restaurants
+    match /restaurants/{restaurantId} {
+      allow read: if isAuth();
+      allow write: if false; // Admin only via Cloud Functions
+    }
+
+    // Chat rooms — members only
+    match /chat_rooms/{roomId} {
+      allow read: if isAuth() && request.auth.uid in resource.data.members;
+      allow write: if false;
+    }
+
+    match /messages/{messageId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.senderUserId == request.auth.uid;
+      allow update, delete: if isAuth() && resource.data.senderUserId == request.auth.uid;
+    }
+
+    // Notifications — private
+    match /notifications/{notifId} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    // Ratings
+    match /ratings/{ratingId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.fromUserId == request.auth.uid;
+    }
+
+    // Reports
+    match /reports/{reportId} {
+      allow create: if isAuth() && request.resource.data.reporterUserId == request.auth.uid;
+      allow read: if false;
+    }
+  }
+}

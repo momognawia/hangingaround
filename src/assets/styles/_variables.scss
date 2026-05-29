@@ -1,0 +1,59 @@
+// Brand colors
+$primary: #FF6B4A;        // coral/orange — chaleureux, convivial
+$primary-dark: #E55535;
+$primary-light: #FF9B85;
+$secondary: #2D2D3A;      // dark navy
+$accent: #F5C842;         // gold
+$success: #4CAF50;
+$warning: #FF9800;
+$error: #F44336;
+
+// Backgrounds
+$bg-app: #F8F7F5;         // off-white warm
+$bg-card: #FFFFFF;
+$bg-dark: #1A1A2E;
+
+// Text
+$text-primary: #1A1A2E;
+$text-secondary: #6B6B80;
+$text-light: #9E9EAF;
+$text-on-primary: #FFFFFF;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// Border radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-full: 50px;
+
+// Shadows
+$shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+$shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.16);
+$shadow-button: 0 4px 16px rgba(255, 107, 74, 0.35);
+
+// Typography
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-size-xs: 11px;
+$font-size-sm: 13px;
+$font-size-base: 15px;
+$font-size-md: 17px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$font-size-2xl: 30px;
+
+// Breakpoints (mobile-first)
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;
+
+// Bottom nav height (mobile)
+$bottom-nav-height: 64px;
+$top-bar-height: 56px;
